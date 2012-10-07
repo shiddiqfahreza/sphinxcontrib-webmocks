@@ -18,7 +18,7 @@ Following code is sample::
 See more examples and output images in http://packages.python.org/sphinxcontrib-webmocks/ .
 '''
 
-requires = ['Sphinx>=0.6']
+requires = ['setuptools', 'Sphinx>=0.6']
 
 setup(
     name='sphinxcontrib-webmocks',
