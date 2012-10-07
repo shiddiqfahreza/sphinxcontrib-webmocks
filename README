@@ -1,0 +1,190 @@
+webmocks extension README
+==========================
+
+This is a sphinx extension which embeds web mock-ups .
+
+source:
+
+.. code-block:: text
+
+   :Name: :text:`Input your name`
+   :Address: :text:`Input your address`
+
+   :button:`OK` :button:`Cancel`
+
+rendered:
+
+:Name: :text:`Input your name`
+:Address: :text:`Input your address`
+
+:button:`OK` :button:`Cancel`
+
+Setting
+========
+
+You can get archive file at http://bitbucket.org/tk0miya/sphinxcontrib-webmocks/
+
+Install
+--------
+
+.. code-block:: bash
+
+   > easy_install sphinxcontrib-webmocks
+
+
+Configure Sphinx
+-----------------
+
+To enable this extension, add ``sphinxcontrib.webmocks`` module to extensions 
+option at :file:`conf.py`. 
+
+.. code-block:: python
+
+   import os, sys
+
+   # Path to the folder where webmocks.py is
+   # NOTE: not needed if the package is installed in traditional way
+   # using setup.py or easy_install
+   sys.path.append(os.path.abspath('/path/to/sphinxcontrib.webmocks'))
+
+   # Enabled extensions
+   extensions = ['sphinxcontrib.webmocks']
+
+
+Roles
+======
+
+All roles create web input forms.
+
+.. describe:: :text:`...`
+
+   **text** role creates a text input form.
+   You should specify default value of form as role-text.
+   If you do want empty form, put '_' to role-text.
+
+   Examples::
+
+      Text form is here: :text:`default value`
+
+      Empty text form is here: :text:`_`
+
+.. describe:: :textarea:`...`
+
+   **textarea** role creates a textarea input form.
+
+   Examples::
+
+      Textarea form is here: :textarea:`default value`
+
+      Empty textarea form is here: :textarea:`_`
+
+.. describe:: :select:`...`
+
+   **select** role creates a select input form.
+   You should specify selection items of select-form as role-text with cammas.
+
+   Examples::
+
+      Select form is here: :select:`Item 1,Item 2,Item 3,Item 4`
+
+.. describe:: :radio:`...`
+
+   **radio** role creates set of radio buttons. 
+   You should specify selection items of radio buttons as role-text with cammas.
+
+   Examples::
+
+      Radio buttons are here: :radio:`Item 1,Item 2,Item 3,Item 4`
+
+.. describe:: :checkbox:`...`
+
+   **checkbox** role creates set of checkboxes. 
+   You should specify selection items of checkboxes as role-text with cammas.
+
+   Examples::
+
+      Checkboxes are here: :checkbox:`Item 1,Item 2,Item 3,Item 4`
+
+.. describe:: :button:`...`
+
+   **button** role creates a button.
+   You should specify label of button as role-text.
+
+   Examples::
+
+      Button is here: :button:`OK`
+
+
+Directives
+===========
+
+.. describe:: .. menulist::
+
+   **menulist** directive defines menulist of application as nested tree.
+
+   Defined menulist is used for breadcrumb list in **page** directive.
+
+   Examples::
+
+      .. menulist::
+
+         * Menu1
+            * Sub-Menu 1-1
+            * Sub-Menu 1-2
+            * Sub-Menu 1-3
+         * Menu2
+         * Menu3
+         * Menu4
+
+.. describe:: .. page:: [page_id]
+
+   **page** directive defines a page on application.
+
+   Examples::
+
+      .. page:: create_user
+
+         :UserId: :text:`_`
+         :E-mail: :text:`_`
+
+         :button:`OK` :button:`Cancel`
+
+   This directive has some options:
+
+   .. list-table::
+      :header-rows: 1
+
+      * - Name
+        - Description
+      * - breadcrumb
+        - Add breadcrumb list to page
+      * - desctable
+        - Show descriptions of forms on page
+
+   Example::
+
+      .. page:: create_user
+         :breadcrumb: Users > Create User
+         :desctable:
+
+         :UserId: :text:`_`
+         :E-mail: :text:`_`
+
+         :button:`OK` :button:`Cancel`
+
+      .. page:: create_user2
+         :breadcrumb: Users > Create User
+         :desctable:
+
+         :UserId: :text:`_ <required, description=Allows only ASCII chars>`
+         :E-mail: :text:`_ <required>`
+
+         :button:`OK` :button:`Cancel`
+
+
+Repository
+===========
+
+This code is hosted by Bitbucket.
+
+  http://bitbucket.org/tk0miya/sphinxcontrib-webmocks/
